@@ -1,6 +1,6 @@
 {
   "name": "sass-variables",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "share variables between sass js",
   "main": "index.js",
   "scripts": {

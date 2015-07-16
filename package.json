@@ -1,7 +1,11 @@
 {
-  "name": "sass-variables",
+  "name": "sass-variables-loader",
   "version": "0.1.0",
-  "description": "share variables between sass js",
+  "description": "webpack loader for sharing variables between sass js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:buildo/sass-variables-loader.git"
+  },
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/karma/bin/karma start",

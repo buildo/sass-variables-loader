@@ -5,31 +5,15 @@ function camelCase(k) {
   return k.replace(/-(.)/gi, (_, l) => l.toUpperCase());
 }
 
-function firstPass(content) {
+function parse(content, parsed = {}) {
   return content.split(`\n`).map(::matchVarDecl.exec).filter(t => t)
-    .map(([_, vname, value]) => ({ // eslint-disable-line no-unused-vars
-      [camelCase(vname)]: value
-    }))
+    .map(([_, vname, value]) => { // eslint-disable-line no-unused-vars
+      const m = matchVarName.exec(value);
+      return {
+        [camelCase(vname)]: m ? parsed[camelCase(m[1])] || value : value
+      };
+    })
     .reduce((ac, v) => ({ ...ac, ...v }), {});
-}
-
-function secondPass(parsed) {
-  const toReplace = Object.keys(parsed).map(k => {
-    const matched = matchVarName.exec(parsed[k]);
-    return matched ? { [k]: matched[1] } : false;
-  }).filter(t => t);
-
-  return toReplace.length === 0 ?
-    parsed : secondPass({
-      ...parsed,
-      ...toReplace.reduce((ac, v) => {
-        const k = Object.keys(v)[0];
-        return {
-          ...ac,
-          [k]: parsed[camelCase(v[k])]
-        };
-      }, {})
-    });
 }
 
 module.exports = function(content) {
@@ -37,5 +21,5 @@ module.exports = function(content) {
     this.cacheable();
   }
 
-  return `module.exports = ${JSON.stringify(secondPass(firstPass(content)))};`;
+  return `module.exports = ${JSON.stringify(parse(content, parse(content)))};`;
 };

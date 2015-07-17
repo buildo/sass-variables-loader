@@ -1,6 +1,6 @@
 {
   "name": "sass-variables-loader",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "webpack loader for sharing variables between sass and js",
   "repository": {
     "type": "git",

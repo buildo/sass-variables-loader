@@ -43,7 +43,7 @@ describe('sass-variables loader', () => {
 
     expect(parsed).toEqual({
       aquamarine: "#45a7b9",
-      borderColor: "$pearl",
+      borderColor: "#e6e6e6",
       borderRadius: "5px",
       cobalt60: "rgba(0, 68, 162, 0.6)",
       green: "#299f51",

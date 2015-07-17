@@ -6,14 +6,14 @@ describe('sass-variables loader', () => {
 
     const sass = `
   $silver: #bdc2ca;
-  $charcoal: #2c3a40;
+    $charcoal: #2c3a40
   $pearl: #e6e6e6;
   $gray: #dfdfdf;
   $aquamarine: #45a7b9;
   $shakespeare: #4dbfd3;
   $green: #299f51;
-  $cello: #23448a;
-  $lynch: #628292;
+  $cello: #23448a
+  $lynch: #628292;${'   '}
   $fiord: #384952;
   $snow: #f5f7fa;
   $ice: #edf8ff;

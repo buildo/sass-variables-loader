@@ -1,4 +1,4 @@
-const matchVarDecl = /\$([^:]+):[ ]*([^;]+);/gi;
+const matchVarDecl = /\$([^:]+):[ ]*([^;]+);?/;
 const matchVarName = /^\$([\s\S]+)$/;
 
 function camelCase(k) {

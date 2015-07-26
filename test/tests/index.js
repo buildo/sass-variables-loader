@@ -42,22 +42,53 @@ describe('sass-variables loader', () => {
     );
 
     expect(parsed).toEqual({
-      aquamarine: "#45a7b9",
-      borderColor: "#e6e6e6",
-      borderRadius: "5px",
-      cobalt60: "rgba(0, 68, 162, 0.6)",
-      green: "#299f51",
-      lemon60: "rgba(255, 233, 15, 0.6)",
-      lynch: "#628292",
-      paddingLarge: "15px",
-      paddingSmall: "7px",
-      pearl: "#e6e6e6",
-      perano: "#bfe0f6",
-      silver: "#bdc2ca",
-      snow: "#f5f7fa",
-      tangerine60: "rgba(255, 141, 15, 0.6)",
-      vermillion60: "rgba(251, 25, 25, 0.6)"
+      aquamarine: '#45a7b9',
+      borderColor: '#e6e6e6',
+      borderRadius: '5px',
+      borderRadiusSmall: '2px',
+      cello: '#23448a',
+      charcoal: '#2c3a40',
+      cobalt: '#0044a2',
+      cobalt60: 'rgba(0, 68, 162, 0.6)',
+      fiord: '#384952',
+      gray: '#dfdfdf',
+      green: '#299f51',
+      ice: '#edf8ff',
+      lemon: '#ffea0f',
+      lemon60: 'rgba(255, 233, 15, 0.6)',
+      lynch: '#628292',
+      paddingLarge: '15px',
+      paddingMedium: '10px',
+      paddingSmall: '7px',
+      pearl: '#e6e6e6',
+      perano: '#bfe0f6',
+      shakespeare: '#4dbfd3',
+      silver: '#bdc2ca',
+      snow: '#f5f7fa',
+      tangerine: '#ff8d0f',
+      tangerine60: 'rgba(255, 141, 15, 0.6)',
+      vermillion: '#fb1919',
+      vermillion60: 'rgba(251, 25, 25, 0.6)'
     });
 
+  });
+
+  it('should not skip lines', () => {
+    const sass = `$loaded1: 100px;
+
+$loaded2: 100px;
+$ignored: 111px;
+$loaded3: 100px;
+`;
+    const parsed = JSON.parse(
+      sassVariables(sass).replace(/module\.exports = ([^;]+);/, (_, m) => m)
+    );
+
+    expect(parsed).toEqual({
+      loaded1: '100px',
+      loaded2: '100px',
+      ignored: '111px',
+      loaded3: '100px'
+    });
   });
 });

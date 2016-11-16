@@ -17,6 +17,8 @@ module.exports = function (config) {
 
     singleRun: true,
 
+    plugins: [ 'karma-mocha', 'karma-webpack', 'karma-chrome-launcher' ],
+
     frameworks: [ 'mocha' ],
 
     files: [
@@ -24,21 +26,19 @@ module.exports = function (config) {
     ],
 
     preprocessors: {
-      'karma.js': [ 'webpack' ],
+      'karma.js': [ 'webpack' ]
     },
 
-    reporters: process.env.CONTINUOUS_INTEGRATION ? [ 'bamboo', 'coverage' ] : [ 'dots', 'coverage' ],
+    reporters: [ 'dots' ],
 
     bambooReporter: {
-      filename: 'mocha.json',
+      filename: 'mocha.json'
     },
 
     coverageReporter: {
       reporters: [
-        process.env.CONTINUOUS_INTEGRATION ?
-        { type: 'lcov', subdir: 'lcov-report' } :
         { type: 'html', subdir: 'html-report' }
-      ],
+      ]
     },
 
     webpack: {
